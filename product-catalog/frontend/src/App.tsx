@@ -3,17 +3,14 @@ import { Router, RouterProvider, Route, RootRoute, Outlet } from '@tanstack/reac
 import ProductList from './components/ProductList';
 import ProductDetail from './components/ProductDetail';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import React from 'react';
 
 // QueryClient instance
 const queryClient = new QueryClient();
 
 // Root route configuration
 const rootRoute = new RootRoute({
-  component: () => (
-    <QueryClientProvider client={queryClient}>
-      <Outlet />
-    </QueryClientProvider>
-  ),
+  component: () => <Outlet />
 });
 
 // Products route configuration
@@ -36,14 +33,13 @@ const routeTree = rootRoute.addChildren([productsRoute, productRoute]);
 // Router instance
 const router = new Router({ routeTree });
 
-// Render the application
+// Render the application 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <RouterProvider router={router} />
-    <ErrorBoundary>
-      <Outlet />
-    </ErrorBoundary>
-  </QueryClientProvider>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;
