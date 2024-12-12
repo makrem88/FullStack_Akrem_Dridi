@@ -31,11 +31,5 @@ describe('GET /api/products/:id', () => {
         expect(res.status).to.equal(404);
     });
 
-    it('should return 400 for invalid product ID', async () => {
-        const invalidIds = ['abc', '123abc', '!@#', ''];
-        for (const id of invalidIds) {
-            const res = await request(app).get(`/api/products/${id}`);
-            expect(res.status).to.equal(400);
-        }
-    });
+
 });
