@@ -14,30 +14,68 @@ export default function ProductList() {
     if (isLoading) return <LoadingSpinner />;
     if (error) return <div>Error: {(error as Error).message}</div>;
 
-    const filteredProducts = products?.filter(p =>
-        p.name.toLowerCase().includes(search.toLowerCase())
-    );
+    const filteredProducts = !search
+        ? products
+        : products?.filter(p => p?.name?.includes(search));
 
     return (
-        <div className="container mx-auto p-4">
-            <input
-                type="search"
-                placeholder="Search products..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full p-2 mb-4 border rounded"
-            />
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {filteredProducts?.map(product => (
-                    <Link key={product.id} to="/product/$productId" params={{ productId: product.id }}>
-                        <div className="border rounded-lg p-4 hover:shadow-lg transition-shadow">
-                            <img src={product.thumbnail} alt={product.name} className="w-full h-48 object-cover rounded" />
-                            <h2 className="text-lg font-bold mt-2">{product.name}</h2>
-                            <p className="text-gray-600">${product.price}</p>
+        <div className="min-h-screen bg-gray-100 py-10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                <header className="mb-12">
+                    <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">
+                        Featured Products
+                    </h1>
+                    <div className="flex justify-center">
+                        <div className="w-full max-w-xl">
+                            <input
+                                type="search"
+                                placeholder="Search products..."
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                className="w-full p-4 text-lg border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                            />
                         </div>
-                    </Link>
-                ))}
+                    </div>
+                </header>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+                    {filteredProducts?.map(product => (
+                        <Link
+                            key={product.id}
+                            to={`/product/${product.id}`}
+                            className="mx-auto w-full max-w-sm"
+                        >
+                            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+                                <div className="aspect-w-1 aspect-h-1 relative">
+                                    <img
+                                        src={product.thumbnail}
+                                        alt={product.name}
+                                        className="w-full h-64 object-cover"
+                                    />
+                                </div>
+                                <div className="p-6">
+                                    <h2 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2">
+                                        {product.name}
+                                    </h2>
+                                    <p className="text-xl font-semibold text-blue-600">
+                                        ${product.price.toFixed(2)}
+                                    </p>
+                                    <button className="mt-4 w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200">
+                                        View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+
+                {filteredProducts?.length === 0 && (
+                    <div className="text-center py-16">
+                        <p className="text-xl text-gray-600">
+                            No products found matching your search.
+                        </p>
+                    </div>
+                )}
             </div>
         </div>
     );
