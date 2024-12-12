@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Error boundary component to catch JavaScript errors in child components
 export class ErrorBoundary extends React.Component<
     { children: React.ReactNode; },
     { hasError: boolean; error: Error | null; }
@@ -10,7 +11,7 @@ export class ErrorBoundary extends React.Component<
     }
 
     static getDerivedStateFromError(error: Error) {
-        return { hasError: true, error };
+        return { hasError: true, error }; // Update state to show fallback UI
     }
 
     render() {
@@ -22,6 +23,6 @@ export class ErrorBoundary extends React.Component<
                 </div>
             );
         }
-        return this.props.children;
+        return this.props.children; // Render children if no error
     }
 }

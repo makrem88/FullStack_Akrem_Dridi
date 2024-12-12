@@ -1,5 +1,20 @@
 import { buttonVariants } from './ui/button';
 
+
+interface ProductCardProps {
+    product: {
+        thumbnail: string;
+        name: string;
+        price: number;
+    };
+}
+
+
+
+/**
+ * ProductCard component displays a product with its thumbnail, name, and price.
+ * It also includes a button to view more details about the product.
+ */
 export default function ProductCard({ product }: ProductCardProps) {
     return (
         <div className="rounded-lg shadow-md p-4 bg-card">

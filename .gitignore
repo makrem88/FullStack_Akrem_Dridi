@@ -1,0 +1,4 @@
+# Root level .gitignore
+.DS_Store
+.env
+.vscode

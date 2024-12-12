@@ -1,7 +1,8 @@
+// Interface representing a product
 export interface Product {
-    id: string;
-    name: string;
-    price: number;
-    thumbnail: string;
-    description: string;
+    id: string; // Unique identifier for the product
+    name: string; // Name of the product
+    price: number; // Price of the product
+    thumbnail: string; // URL of the product's thumbnail image
+    description: string; // Description of the product
 }
