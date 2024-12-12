@@ -4,6 +4,8 @@ import { Router, RouterProvider, Route, RootRoute, Outlet } from '@tanstack/reac
 import ProductList from './components/ProductList';
 import ProductDetail from './components/ProductDetail';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
 // QueryClient instance
 const queryClient = new QueryClient();
@@ -38,15 +40,14 @@ const routeTree = rootRoute.addChildren([
 // Router instance
 const router = new Router({ routeTree });
 
-// App component
-/**
- * The App component sets up the application with routing and error boundary.
- * It uses the RouterProvider to provide the router instance to the application.
- */
-export default function App() {
-  return (
+// Render the application
+const App = () => (
+  <RouterProvider router={router}>
     <ErrorBoundary>
-      <RouterProvider router={router} />
+      <Outlet />
     </ErrorBoundary>
-  );
-}
+  </RouterProvider>
+);
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+root.render(<App />);
