@@ -78,13 +78,13 @@ This repository contains both the backend and frontend projects for the Product 
 
    The frontend development server should now be running on `http://localhost:3000`.
 
-## Screenshots
+## Screenshots (NO ScreenShots for now)
 
 ![Home Page](screenshots/home.png)
 ![Product Page](screenshots/product.png)
 
-Notes
-The backend has been tested and all tests pass.
-The frontend was developed within a 3-hour timeframe and has not been fully tested. It includes many features, but more testing is needed. Test scripts for some features have been added.
+##Notes <br/>
+- The backend has been tested and all tests pass. <br/>
+- The frontend was developed within a 3-hour timeframe and has not been fully tested. It includes many features, but more testing is needed. Test scripts for some features have been added.
 
 
