@@ -1,4 +1,3 @@
-// Import statements
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Router, RouterProvider, Route, RootRoute, Outlet } from '@tanstack/react-router';
 import ProductList from './components/ProductList';
@@ -10,9 +9,11 @@ const queryClient = new QueryClient();
 
 // Root route configuration
 const rootRoute = new RootRoute({
-  component: () => <QueryClientProvider client={queryClient}>
-    <Outlet />
-  </QueryClientProvider>
+  component: () => (
+    <QueryClientProvider client={queryClient}>
+      <Outlet />
+    </QueryClientProvider>
+  ),
 });
 
 // Products route configuration
@@ -30,23 +31,19 @@ const productRoute = new Route({
 });
 
 // Route tree configuration
-const routeTree = rootRoute.addChildren([
-  productsRoute,
-  productRoute
-]);
+const routeTree = rootRoute.addChildren([productsRoute, productRoute]);
 
 // Router instance
 const router = new Router({ routeTree });
 
-// App component
-/**
- * The App component sets up the application with routing and error boundary.
- * It uses the RouterProvider to provide the router instance to the application.
- */
-export default function App() {
-  return (
+// Render the application
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <RouterProvider router={router} />
     <ErrorBoundary>
-      <RouterProvider router={router} />
+      <Outlet />
     </ErrorBoundary>
-  );
-}
+  </QueryClientProvider>
+);
+
+export default App;
