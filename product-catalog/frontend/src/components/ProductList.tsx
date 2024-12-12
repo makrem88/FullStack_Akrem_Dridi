@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { getProducts } from '../api/products';
+import { LoadingSpinner } from './LoadingSpinner';
 
 export default function ProductList() {
     const [search, setSearch] = useState('');
@@ -10,7 +11,7 @@ export default function ProductList() {
         queryFn: getProducts
     });
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <LoadingSpinner />;
     if (error) return <div>Error: {(error as Error).message}</div>;
 
     const filteredProducts = products?.filter(p =>

@@ -1,15 +1,8 @@
-import {
-  QueryClient,
-  QueryClientProvider
-} from '@tanstack/react-query';
-import {
-  Router,
-  RouterProvider,
-  Route,
-  RootRoute
-} from '@tanstack/react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Router, RouterProvider, Route, RootRoute } from '@tanstack/react-router';
 import ProductList from './components/ProductList';
 import ProductDetail from './components/ProductDetail';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 const queryClient = new QueryClient();
 
@@ -39,5 +32,9 @@ const routeTree = rootRoute.addChildren([
 const router = new Router({ routeTree });
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ErrorBoundary>
+      <RouterProvider router={router} />
+    </ErrorBoundary>
+  );
 }

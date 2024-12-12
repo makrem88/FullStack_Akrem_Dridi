@@ -1,15 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
 import { getProduct } from '../api/products';
+import { LoadingSpinner } from './LoadingSpinner';
 
 export default function ProductDetail() {
-    const { productId } = useParams();
+    const { productId } = useParams({ from: '/products/:productId' });
     const { data: product, isLoading, error } = useQuery({
         queryKey: ['product', productId],
         queryFn: () => getProduct(productId)
     });
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <LoadingSpinner />;
     if (error) return <div>Error: {(error as Error).message}</div>;
     if (!product) return <div>Product not found</div>;
 
