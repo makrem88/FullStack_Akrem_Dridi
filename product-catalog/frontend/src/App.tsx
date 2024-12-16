@@ -3,7 +3,7 @@ import { Router, RouterProvider, Route, RootRoute, Outlet } from '@tanstack/reac
 import ProductList from './components/ProductList';
 import ProductDetail from './components/ProductDetail';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import React from 'react';
+
 
 // QueryClient instance
 const queryClient = new QueryClient();

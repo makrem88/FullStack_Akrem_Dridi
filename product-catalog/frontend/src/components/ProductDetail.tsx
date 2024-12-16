@@ -4,10 +4,10 @@ import { getProduct } from '../api/products';
 import { LoadingSpinner } from './LoadingSpinner';
 
 export default function ProductDetail() {
-    const { productId } = useParams({ from: '/products/:productId' });
+    const { productId } = useParams({ from: '/product/$productId' });
     const { data: product, isLoading, error } = useQuery({
-        queryKey: ['product', productId],
-        queryFn: () => getProduct(productId)
+        queryKey: ['products', productId],
+        queryFn: () => getProduct(Number(productId))
     });
 
     if (isLoading) return <LoadingSpinner />;

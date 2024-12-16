@@ -15,7 +15,7 @@ export async function getProducts(): Promise<Product[]> {
 }
 
 // Function to fetch a single product by its ID from the API
-export async function getProduct(id: string): Promise<Product> {
+export async function getProduct(id: number): Promise<Product> {
     // Make a GET request to the /products/{id} endpoint
     const response = await fetch(`${API_URL}/products/${id}`);
     // Throw an error if the request was not successful
