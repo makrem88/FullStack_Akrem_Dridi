@@ -16,7 +16,7 @@ export default function ProductList() {
 
     const filteredProducts = !search
         ? products
-        : products?.filter(p => p?.name?.includes(search));
+        : products?.filter(p => p?.name?.toLowerCase().includes(search.toLowerCase()));
 
     return (
         <div className="min-h-screen bg-gray-100 py-10">
