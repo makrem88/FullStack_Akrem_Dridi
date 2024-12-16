@@ -67,7 +67,7 @@ This repository contains both the backend and frontend projects for the Product 
    npm start
    ```
 
-   The backend server should now be running on the port specified in the `.env` file (default is `5000`).
+   The backend server should now be running on the port specified in the `.env` file (default is `3000`).
 
 ### Running the Frontend
 
@@ -76,7 +76,7 @@ This repository contains both the backend and frontend projects for the Product 
    npm start
    ```
 
-   The frontend development server should now be running on `http://localhost:3000`.
+   The frontend development server should now be running on `http://localhost:5173/`.
 
 ## Screenshots (NO ScreenShots for now)
 
